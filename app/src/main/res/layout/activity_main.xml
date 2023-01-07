@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+ <androidx.appcompat.widget.AppCompatEditText
+     android:id="@+id/et_name"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     app:layout_constraintStart_toStartOf="parent"
+     app:layout_constraintTop_toTopOf="parent"
+     app:layout_constraintEnd_toEndOf="parent"
+     app:layout_constraintBottom_toTopOf="@id/et_serName"
+     android:layout_marginTop="80dp"
+     android:padding="10dp"
+     tools:text="Name"
+     android:textSize="20sp"
+     android:textStyle="Bold"/>
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/et_serName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/et_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="20dp"
+        android:padding="10dp"
+        tools:text="Name"
+        android:textSize="20sp"
+        android:textStyle="Bold"/>
+
+    <Button
+        android:id="@+id/btn_save_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="45dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/et_serName"
+        android:text="@string/save_name"
+        android:textSize="20sp"
+        android:textStyle="Bold"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
