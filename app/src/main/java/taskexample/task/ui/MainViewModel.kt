@@ -2,11 +2,8 @@ package taskexample.task.ui
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
 
-@HiltViewModel
-class MainViewModel @Inject constructor() : ViewModel() {
+class MainViewModel: ViewModel() {
 
     //LiveData имени
     private val _nameLiveData = MutableLiveData<String>()
@@ -19,11 +16,8 @@ class MainViewModel @Inject constructor() : ViewModel() {
         get() = _serNameLiveData
 
     // кладем данные в liveData
-    fun updateSerName(result: String) {
-        serNameLiveData.postValue(result)
-    }
-
-    fun updateName(result: String) {
-        nameLiveData.postValue(result)
+    fun updateData(name: String, serName: String) {
+        serNameLiveData.value = serName
+        nameLiveData.value = name
     }
 }

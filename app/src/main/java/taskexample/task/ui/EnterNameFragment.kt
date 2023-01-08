@@ -7,11 +7,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import dagger.hilt.android.AndroidEntryPoint
 import taskexample.task.R
 import taskexample.task.databinding.FragmentEnterNameBinding
 
-@AndroidEntryPoint
 class EnterNameFragment : Fragment() {
 
     //ленивая инициализация viewModel
@@ -36,8 +34,7 @@ class EnterNameFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         //ставим слушатель клика на кнопку
         binding.btnSaveName.setOnClickListener {
-            viewModel.updateName(binding.etName.text.toString())
-            viewModel.updateSerName(binding.etSerName.text.toString())
+            viewModel.updateData(binding.etName.text.toString(), binding.etSerName.text.toString())
             //Проверка на ввод данных
             if (binding.etName.text.isNullOrBlank() || binding.etSerName.text.isNullOrBlank()) {
                 Toast.makeText(requireContext(), EMPTY_DATA, Toast.LENGTH_SHORT).show()
