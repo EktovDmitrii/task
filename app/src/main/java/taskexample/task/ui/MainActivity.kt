@@ -7,19 +7,17 @@ import taskexample.task.R
 
 class MainActivity : AppCompatActivity() {
 
-    private val enterNameFragment = EnterNameFragment()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         //Вызываем запуск фрагмента
-        launchFirstFragment(enterNameFragment)
+        launchFirstFragment()
     }
 
     //Метод запуска первого фрагмента
-    private fun launchFirstFragment(fragment: Fragment) {
+    private fun launchFirstFragment() {
         supportFragmentManager.beginTransaction().apply {
-            replace(R.id.home_fragment_container, fragment)
+            replace(R.id.home_fragment_container, EnterNameFragment.newInstance())
             addToBackStack(null)
                 .commit()
         }
