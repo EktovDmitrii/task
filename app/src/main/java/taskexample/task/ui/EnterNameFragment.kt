@@ -20,7 +20,6 @@ class EnterNameFragment : Fragment() {
     private val binding: FragmentEnterNameBinding
         get() = _binding ?: throw RuntimeException("FragmentEnterNameBinding is null")
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -34,15 +33,23 @@ class EnterNameFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         //ставим слушатель клика на кнопку
         binding.btnSaveName.setOnClickListener {
-            viewModel.updateData(binding.etName.text.toString(), binding.etSerName.text.toString())
+            updateViewModel()
             //Проверка на ввод данных
             if (binding.etName.text.isNullOrBlank() || binding.etSerName.text.isNullOrBlank()) {
-                Toast.makeText(requireContext(), EMPTY_DATA, Toast.LENGTH_SHORT).show()
+                showError()
             } else {
                 //запускаем фрагмент с данными
                 launchShowDataFragment()
             }
         }
+    }
+
+    private fun updateViewModel() {
+        viewModel.updateData(binding.etName.text.toString(), binding.etSerName.text.toString())
+    }
+
+    private fun showError() {
+        Toast.makeText(requireContext(), EMPTY_DATA, Toast.LENGTH_SHORT).show()
     }
 
     override fun onDestroyView() {
@@ -62,6 +69,7 @@ class EnterNameFragment : Fragment() {
     companion object {
 
         private const val EMPTY_DATA = "please check your information again"
+
         fun newInstance(): Fragment {
             return EnterNameFragment()
         }
