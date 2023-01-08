@@ -3,10 +3,8 @@ package taskexample.task.ui
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import dagger.hilt.android.AndroidEntryPoint
 import taskexample.task.R
 
-@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private val enterNameFragment = EnterNameFragment()

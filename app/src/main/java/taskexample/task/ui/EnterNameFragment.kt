@@ -7,11 +7,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import dagger.hilt.android.AndroidEntryPoint
 import taskexample.task.R
 import taskexample.task.databinding.FragmentEnterNameBinding
 
-@AndroidEntryPoint
 class EnterNameFragment : Fragment() {
 
     //ленивая инициализация viewModel
