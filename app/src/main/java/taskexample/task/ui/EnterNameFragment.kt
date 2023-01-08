@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import dagger.hilt.android.AndroidEntryPoint
 import taskexample.task.R
 import taskexample.task.databinding.FragmentEnterNameBinding
@@ -15,15 +15,13 @@ import taskexample.task.databinding.FragmentEnterNameBinding
 class EnterNameFragment : Fragment() {
 
     //ленивая инициализация viewModel
-    private val viewModel: MainViewModel by viewModels()
+    private val viewModel: MainViewModel by activityViewModels()
 
     //Инициальзируем Binding и обрабатываем исключение
     private var _binding: FragmentEnterNameBinding? = null
     private val binding: FragmentEnterNameBinding
         get() = _binding ?: throw RuntimeException("FragmentEnterNameBinding is null")
 
-    private lateinit var name: String
-    private lateinit var serName: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,14 +36,15 @@ class EnterNameFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         //ставим слушатель клика на кнопку
         binding.btnSaveName.setOnClickListener {
-            name = viewModel.updateName(binding.etName.text.toString())
-            serName = viewModel.updateSerName(binding.etSerName.text.toString())
+            viewModel.updateName(binding.etName.text.toString())
+            viewModel.updateSerName(binding.etSerName.text.toString())
             //Проверка на ввод данных
-            if (name.isNullOrBlank() || serName.isNullOrBlank()) {
+            if (binding.etName.text.isNullOrBlank() || binding.etSerName.text.isNullOrBlank()) {
                 Toast.makeText(requireContext(), EMPTY_DATA, Toast.LENGTH_SHORT).show()
-            } else
-            //запускаем фрагмент с данными
-                launchShowDataFragment(name, serName)
+            } else {
+                //запускаем фрагмент с данными
+                launchShowDataFragment()
+            }
         }
     }
 
@@ -55,9 +54,9 @@ class EnterNameFragment : Fragment() {
         _binding = null
     }
 
-    private fun launchShowDataFragment(name: String, serName: String) {
+    private fun launchShowDataFragment() {
         requireActivity().supportFragmentManager.beginTransaction().apply {
-            replace(R.id.home_fragment_container, ShowDataFragment.newInstance(name, serName))
+            replace(R.id.home_fragment_container, ShowDataFragment.newInstance())
             addToBackStack(null)
                 .commit()
         }
